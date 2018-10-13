@@ -1,0 +1,63 @@
+public class Gameplay {
+
+    CardCollection startingDeck;
+    CardCollection player1Deck = new CardCollection(false);
+    CardCollection player2Deck = new CardCollection(false);
+    CardCollection player1CardsWon = new CardCollection(false);
+    CardCollection player2CardsWon = new CardCollection(false);
+
+    public Gameplay() {
+        startingDeck = new CardCollection(true);
+        for(int i = 0; i < startingDeck.size(); i++) {
+            if(i % 2 == 0) player1Deck.add(startingDeck.play());
+            else           player2Deck.add(startingDeck.play());
+        }
+    }
+
+    public void playTheGame() {
+        while(checkDeckSizes(1)) takeTurn(new CardCollection(false));
+    }
+
+    public void takeTurn(CardCollection cardsFromTieResolving) {
+        Card player1Card = player1Deck.play();
+        Card player2Card = player2Deck.play();
+        int comparision = player1Card.compareTo(player2Card);
+        if(comparision > 0) {
+            player1CardsWon.add(player1Card, player2Card);
+            player1CardsWon.add(cardsFromTieResolving);
+        } else if(comparision < 0) {
+            player2CardsWon.add(player1Card, player2Card);
+            player2CardsWon.add(cardsFromTieResolving);
+        } else {
+            CardCollection stackedCards = cardsFromTieResolving;
+            stackedCards.add(player1Card, player2Card);
+            resolveTie(stackedCards);
+        }
+    }
+
+    public void resolveTie(CardCollection cards) {
+        CardCollection cardsWon = cards;
+        if(!checkDeckSizes(2)) win();
+        cardsWon.add(player1Deck.play(), player2Deck.play());
+        takeTurn(cardsWon);
+
+    }
+
+    public boolean checkDeckSizes(int goodSize) {
+        if(player1Deck.size() < goodSize) {
+            player1Deck.moveFrom(player1CardsWon);
+            player1CardsWon.clear();
+        }
+        if(player2Deck.size() < goodSize) {
+            player2Deck.moveFrom(player2CardsWon);
+            player2CardsWon.clear();
+        }
+        return player2Deck.size() >= goodSize && player1Deck.size() >= goodSize;
+
+    }
+
+    public void win() {
+
+    }
+
+}
