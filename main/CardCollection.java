@@ -31,8 +31,9 @@ public class CardCollection {
     }
 
     public void add(CardCollection cards) {
-        for(int i = 0; i < cards.size(); i++) {
-            this.cards.add(cards.get(i));
+        int size = cards.size();
+        for(int i = 0; i < size; i++) {
+            this.cards.add(cards.play());
         }
         Collections.shuffle(this.cards);
     }
@@ -48,10 +49,6 @@ public class CardCollection {
 
     public Card play() {
         return this.cards.poll();
-    }
-
-    public Card get(int index) {
-        return this.cards.get(index);
     }
 
     public void clear() {
