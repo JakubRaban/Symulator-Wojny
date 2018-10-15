@@ -1,13 +1,12 @@
 public class Gameplay {
 
-    CardCollection startingDeck;
+    CardCollection startingDeck = new CardCollection(true);
     CardCollection player1Deck = new CardCollection(false);
     CardCollection player2Deck = new CardCollection(false);
     CardCollection player1CardsWon = new CardCollection(false);
     CardCollection player2CardsWon = new CardCollection(false);
 
     public Gameplay() {
-        startingDeck = new CardCollection(true);
         for(int i = 0; i < startingDeck.size(); i++) {
             if(i % 2 == 0) player1Deck.add(startingDeck.play());
             else           player2Deck.add(startingDeck.play());
