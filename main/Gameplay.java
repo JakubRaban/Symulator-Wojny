@@ -28,9 +28,8 @@ public class Gameplay {
             player2CardsWon.add(player1Card, player2Card);
             player2CardsWon.add(cardsFromTieResolving);
         } else {
-            CardCollection stackedCards = cardsFromTieResolving;
-            stackedCards.add(player1Card, player2Card);
-            resolveTie(stackedCards);
+            cardsFromTieResolving.add(player1Card, player2Card);
+            resolveTie(cardsFromTieResolving);
         }
     }
 
