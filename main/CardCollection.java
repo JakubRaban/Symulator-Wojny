@@ -7,9 +7,11 @@ public class CardCollection {
 
     public CardCollection(boolean fillTheDeck) {
         if(fillTheDeck) {
+            int count = 0;
             for(int i = 0; i < 13; i++) {
                 for(int j = 0; j < 4; j++) {
                     this.cards.add(new Card(CardValue.values()[i], CardSuit.values()[j]));
+                    System.out.println(++count);
                 }
             }
         }
