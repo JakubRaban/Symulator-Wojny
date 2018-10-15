@@ -31,7 +31,7 @@ public class Card implements Comparable<Card> {
     }
 
     public int compareTo(Card card) {
-        return (int) Math.signum(this.value.ordinal() - card.value.ordinal());
+        return this.value.ordinal() - card.value.ordinal();
     }
 
 }
