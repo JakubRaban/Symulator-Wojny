@@ -17,8 +17,7 @@ public class GameplayTest {
         g.player2Deck.clear();
         g.player1Deck.add(new Card(CardValue.ACE, CardSuit.SPADES), new Card(CardValue.QUEEN, CardSuit.HEART));
         g.player2Deck.add(new Card(CardValue.EIGHT, CardSuit.SPADES), new Card(CardValue.TEN, CardSuit.HEART));
-        CardCollection tieCards = new CardCollection(false);
-        tieCards.add(new Card(CardValue.FIVE, CardSuit.CLUBS), new Card(CardValue.TWO, CardSuit.HEART));
+        CardCollection tieCards = new CardCollection(new Card(CardValue.FIVE, CardSuit.CLUBS), new Card(CardValue.TWO, CardSuit.HEART));
         g.takeTurn(tieCards);
         assertEquals(1, g.player1Deck.size());
         assertEquals(1, g.player2Deck.size());
