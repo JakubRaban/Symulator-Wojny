@@ -5,7 +5,7 @@ public class Gameplay {
     CardCollection player2Deck = new CardCollection(false);
     CardCollection player1CardsWon = new CardCollection(false);
     CardCollection player2CardsWon = new CardCollection(false);
-    int winner = 0;
+    int winner;
 
     public Gameplay() {
         for(int i = 0; i < 52; i++) {
@@ -59,7 +59,7 @@ public class Gameplay {
     }
 
     private void win() {
-        if(player2Deck.size() + player2CardsWon.size() < 2) winner = 1;
+        if (player2Deck.size() + player2CardsWon.size() < 2) winner = 1;
         else winner = 2;
     }
 

@@ -55,4 +55,8 @@ public class CardCollection {
         this.cards.clear();
     }
 
+    public String toString() {
+        return this.cards.toString();
+    }
+
 }
