@@ -8,7 +8,8 @@ public class Gameplay {
     int winner;
 
     public Gameplay() {
-        for(int i = 0; i < 52; i++) {
+        int size = startingDeck.size()
+        for(int i = 0; i < size; i++) {
             if(i % 2 == 0) player1Deck.add(startingDeck.play());
             else           player2Deck.add(startingDeck.play());
         }
