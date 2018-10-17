@@ -41,8 +41,22 @@ public class GameplayTest {
         assertEquals(7, g.player2Deck.size());
         assertEquals(2, g.player1Deck.size());
         assertEquals(0, g.player2CardsWon.size());
+        g.player1Deck.play();
+        assertFalse(g.checkDeckSizes(2));
     }
 
-
+    @Test
+    public void testTieResolver() {
+        Gameplay g = new Gameplay();
+        g.player1Deck.clear();
+        g.player2Deck.clear();
+        g.player1Deck.add(new Card(CardValue.ACE, CardSuit.SPADES), new Card(CardValue.QUEEN, CardSuit.HEART));
+        g.player2Deck.add(new Card(CardValue.EIGHT, CardSuit.SPADES), new Card(CardValue.TWO, CardSuit.HEART));
+        g.resolveTie(new CardCollection(new Card(CardValue.ACE, CardSuit.HEART), new Card(CardValue.ACE, CardSuit.SPADES)));
+        assertEquals(0, g.player1Deck.size());
+        assertEquals(6, g.player1CardsWon.size());
+        assertEquals(0, g.player2Deck.size());
+        assertEquals(0, g.player2CardsWon.size());
+    }
 
 }
