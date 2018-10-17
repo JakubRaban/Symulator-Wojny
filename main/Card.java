@@ -1,3 +1,5 @@
+import java.util.Random;
+
 public class Card implements Comparable<Card> {
 
     private CardValue value;
@@ -32,6 +34,13 @@ public class Card implements Comparable<Card> {
 
     public int compareTo(Card card) {
         return this.value.ordinal() - card.value.ordinal();
+    }
+
+    public static Card random() {
+        Random r = new Random();
+        CardValue value = CardValue.values()[r.nextInt(13)];
+        CardSuit suit = CardSuit.values()[r.nextInt(4)];
+        return new Card(value, suit);
     }
 
 }
