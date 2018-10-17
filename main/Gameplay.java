@@ -59,7 +59,7 @@ public class Gameplay {
     }
 
     private void win() {
-        if(player1Deck.size() > 50) winner = 1;
+        if(player2Deck.size() + player2CardsWon.size() < 2) winner = 1;
         else winner = 2;
     }
 
