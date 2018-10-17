@@ -46,7 +46,7 @@ public class GameplayTest {
     }
 
     @Test
-    public void testTieResolver() {
+    public void testTieBreaker() {
         Gameplay g = new Gameplay();
         g.player1Deck.clear();
         g.player2Deck.clear();

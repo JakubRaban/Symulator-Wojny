@@ -63,4 +63,9 @@ public class Gameplay {
         else winner = 2;
     }
 
+
+    public static void main(String ... args) {
+
+    }
+
 }
