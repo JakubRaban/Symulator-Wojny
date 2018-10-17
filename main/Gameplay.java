@@ -5,6 +5,7 @@ public class Gameplay {
     CardCollection player2Deck = new CardCollection(false);
     CardCollection player1CardsWon = new CardCollection(false);
     CardCollection player2CardsWon = new CardCollection(false);
+    int winner = 0;
 
     public Gameplay() {
         for(int i = 0; i < 52; i++) {
@@ -14,7 +15,9 @@ public class Gameplay {
     }
 
     public void playTheGame() {
-        while(checkDeckSizes(1)) takeTurn(new CardCollection(false));
+        while(checkDeckSizes(1))
+            takeTurn(new CardCollection(false));
+        win();
     }
 
     public void takeTurn(CardCollection cardsFromTieResolving) {
@@ -54,8 +57,9 @@ public class Gameplay {
 
     }
 
-    public void win() {
-
+    private void win() {
+        if(player1Deck.size() > 50) winner = 1;
+        else winner = 2;
     }
 
 }
