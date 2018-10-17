@@ -39,9 +39,10 @@ public class Gameplay {
     public void resolveTie(CardCollection cards) {
         CardCollection cardsWon = cards;
         if(!checkDeckSizes(2)) win();
-        cardsWon.add(player1Deck.play(), player2Deck.play());
-        takeTurn(cardsWon);
-
+        else {
+            cardsWon.add(player1Deck.play(), player2Deck.play());
+            takeTurn(cardsWon);
+        }
     }
 
     public boolean checkDeckSizes(int goodSize) {
