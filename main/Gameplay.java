@@ -3,15 +3,14 @@ import java.util.Scanner;
 
 public class Gameplay {
 
-    CardCollection startingDeck = new CardCollection(true);
     CardCollection player1Deck = new CardCollection(false);
     CardCollection player2Deck = new CardCollection(false);
     CardCollection player1CardsWon = new CardCollection(false);
     CardCollection player2CardsWon = new CardCollection(false);
-    int winner;
-    Turn currentTurn;
+    private Turn currentTurn;
 
-    public Gameplay() {
+    Gameplay() {
+        CardCollection startingDeck = new CardCollection(true);
         int size = startingDeck.size();
         for(int i = 0; i < size; i++) {
             if(i % 2 == 0) player1Deck.add(startingDeck.play());
@@ -19,13 +18,13 @@ public class Gameplay {
         }
     }
 
-    public void playTheGame() {
+    private void playTheGame() {
         while(checkDeckSizes(1))
             takeTurn(new CardCollection(false));
         win();
     }
 
-    public void takeTurn(CardCollection cardsFromTieResolving) {
+    void takeTurn(CardCollection cardsFromTieResolving) {
         if(currentTurn == null) currentTurn = new Turn();
         Card player1Card = player1Deck.play();
         Card player2Card = player2Deck.play();
@@ -48,15 +47,14 @@ public class Gameplay {
         }
     }
 
-    public void resolveTie(CardCollection cards) {
-        CardCollection cardsWon = cards;
+    void resolveTie(CardCollection cards) {
         if(!checkDeckSizes(2)) win();
         else {
             Card c1 = player1Deck.play();
             Card c2 = player2Deck.play();
-            cardsWon.add(c1, c2);
+            cards.add(c1, c2);
             currentTurn.add(c1, c2);
-            takeTurn(cardsWon);
+            takeTurn(cards);
         }
     }
 
@@ -65,7 +63,7 @@ public class Gameplay {
                 + player2Deck.size() + "+" + player2CardsWon.size() + ")";
     }
 
-    public boolean checkDeckSizes(int goodSize) {
+    boolean checkDeckSizes(int goodSize) {
         if(player1Deck.size() < goodSize) {
             player1Deck.moveFrom(player1CardsWon);
             player1CardsWon.clear();
@@ -80,11 +78,9 @@ public class Gameplay {
 
     private void win() {
         if (player2Deck.size() + player2CardsWon.size() < 2) {
-            winner = 1;
             System.out.println("Wygrywa gracz 1");
         }
         else {
-            winner = 2;
             System.out.println("Wygrywa gracz 2");
         }
     }
