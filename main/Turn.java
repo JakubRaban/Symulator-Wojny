@@ -18,7 +18,7 @@ public class Turn {
             int comparision = c1.compareTo(c2);
             char comparisionSign = comparision > 0 ? '>' : (comparision == 0 ? '=' : '<');
             for(int i = 0; i < tieLevel; i++) toReturn.append("-> ");
-            if(tieLevel > 0) toReturn.append("Gracze dokładają kartę" + "\n");
+            if(tieLevel > 0) toReturn.append("Gracze dokładają zakrytą kartę" + "\n");
             toReturn.append(c1 + " " + comparisionSign + " " + c2);
             if(player1Cards.size() > 0) toReturn.append("\n");
             tieLevel++;
