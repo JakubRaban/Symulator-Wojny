@@ -3,7 +3,6 @@ import java.util.Scanner;
 
 public class Gameplay {
 
-    static Scanner sc = new Scanner(System.in);
     CardCollection startingDeck = new CardCollection(true);
     CardCollection player1Deck = new CardCollection(false);
     CardCollection player2Deck = new CardCollection(false);
@@ -76,6 +75,7 @@ public class Gameplay {
 
 
     public static void main(String ... args) {
+        Scanner sc = new Scanner(System.in);
         Gameplay gameplay;
         System.out.println("\n" + "--- SYMULATOR WOJNY ---");
         System.out.println("1 = Zagraj w wojnę");
