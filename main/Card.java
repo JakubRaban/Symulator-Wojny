@@ -5,7 +5,7 @@ public class Card implements Comparable<Card> {
     private CardValue value;
     private CardSuit suit;
 
-    public Card(CardValue value, CardSuit suit) {
+    Card(CardValue value, CardSuit suit) {
         this.value = value;
         this.suit = suit;
     }
@@ -28,19 +28,12 @@ public class Card implements Comparable<Card> {
                 default:
                     s.append(this.value.ordinal() + 2);
         }
-        s.append(" " + this.suit.toString());
+        s.append(" ").append(this.suit.toString());
         return s.toString();
     }
 
     public int compareTo(Card card) {
         return this.value.ordinal() - card.value.ordinal();
-    }
-
-    public static Card random() {
-        Random r = new Random();
-        CardValue value = CardValue.values()[r.nextInt(13)];
-        CardSuit suit = CardSuit.values()[r.nextInt(4)];
-        return new Card(value, suit);
     }
 
 }
