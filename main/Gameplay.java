@@ -9,6 +9,7 @@ public class Gameplay {
     CardCollection player1CardsWon = new CardCollection(false);
     CardCollection player2CardsWon = new CardCollection(false);
     int winner;
+    Turn currentTurn;
 
     public Gameplay() {
         int size = startingDeck.size();
@@ -25,15 +26,23 @@ public class Gameplay {
     }
 
     public void takeTurn(CardCollection cardsFromTieResolving) {
+        if(currentTurn == null) currentTurn = new Turn();
         Card player1Card = player1Deck.play();
         Card player2Card = player2Deck.play();
+        currentTurn.add(player1Card, player2Card);
         int comparision = player1Card.compareTo(player2Card);
         if(comparision > 0) {
             player1CardsWon.add(player1Card, player2Card);
             player1CardsWon.add(cardsFromTieResolving);
+            System.out.print(currentTurn);
+            System.out.println(getScore());
+            currentTurn = null;
         } else if(comparision < 0) {
             player2CardsWon.add(player1Card, player2Card);
             player2CardsWon.add(cardsFromTieResolving);
+            System.out.print(currentTurn);
+            System.out.println(getScore());
+            currentTurn = null;
         } else {
             cardsFromTieResolving.add(player1Card, player2Card);
             resolveTie(cardsFromTieResolving);
@@ -44,9 +53,17 @@ public class Gameplay {
         CardCollection cardsWon = cards;
         if(!checkDeckSizes(2)) win();
         else {
-            cardsWon.add(player1Deck.play(), player2Deck.play());
+            Card c1 = player1Deck.play();
+            Card c2 = player2Deck.play();
+            cardsWon.add(c1, c2);
+            currentTurn.add(c1, c2);
             takeTurn(cardsWon);
         }
+    }
+
+    private String getScore() {
+        return "(" + player1Deck.size() + "+" + player1CardsWon.size() + ":"
+                + player2Deck.size() + "+" + player2CardsWon.size() + ")";
     }
 
     public boolean checkDeckSizes(int goodSize) {
