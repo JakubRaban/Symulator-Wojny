@@ -4,7 +4,7 @@ public class Turn {
     private CardCollection player1Cards = new CardCollection();
     private CardCollection player2Cards = new CardCollection();
 
-    public void add(Card c1, Card c2) {
+    void add(Card c1, Card c2) {
         player1Cards.add(c1);
         player2Cards.add(c2);
     }
@@ -19,7 +19,7 @@ public class Turn {
             char comparisionSign = comparision > 0 ? '>' : (comparision == 0 ? '=' : '<');
             for(int i = 0; i < tieLevel; i++) toReturn.append("-> ");
             if(tieLevel > 0) toReturn.append("Gracze dokładają zakrytą kartę" + "\n");
-            toReturn.append(c1 + " " + comparisionSign + " " + c2);
+            toReturn.append(c1).append(" ").append(comparisionSign).append(" ").append(c2);
             if(player1Cards.size() > 0) toReturn.append("\n");
             tieLevel++;
         }
