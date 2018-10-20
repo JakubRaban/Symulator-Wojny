@@ -1,5 +1,9 @@
+
+import java.util.Scanner;
+
 public class Gameplay {
 
+    static Scanner sc = new Scanner(System.in);
     CardCollection startingDeck = new CardCollection(true);
     CardCollection player1Deck = new CardCollection(false);
     CardCollection player2Deck = new CardCollection(false);
@@ -8,7 +12,7 @@ public class Gameplay {
     int winner;
 
     public Gameplay() {
-        int size = startingDeck.size()
+        int size = startingDeck.size();
         for(int i = 0; i < size; i++) {
             if(i % 2 == 0) player1Deck.add(startingDeck.play());
             else           player2Deck.add(startingDeck.play());
@@ -60,13 +64,32 @@ public class Gameplay {
     }
 
     private void win() {
-        if (player2Deck.size() + player2CardsWon.size() < 2) winner = 1;
-        else winner = 2;
+        if (player2Deck.size() + player2CardsWon.size() < 2) {
+            winner = 1;
+            System.out.println("Wygrywa gracz 1");
+        }
+        else {
+            winner = 2;
+            System.out.println("Wygrywa gracz 2");
+        }
     }
 
 
     public static void main(String ... args) {
-
+        Gameplay gameplay;
+        System.out.println("\n" + "--- SYMULATOR WOJNY ---");
+        System.out.println("1 = Zagraj w wojnę");
+        System.out.println("2 = Wyjdź");
+        boolean validInput = false;
+        while(!validInput) {
+            System.out.print("Wybór = _" + "\b");
+            String choice = sc.nextLine();
+            if(choice.equals("1")) {
+                validInput = true;
+                gameplay = new Gameplay();
+                gameplay.playTheGame();
+            } else if(choice.equals("2")) System.exit(0);
+        }
     }
 
 }
