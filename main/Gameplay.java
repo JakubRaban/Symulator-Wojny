@@ -31,21 +31,20 @@ public class Gameplay {
         Card player2Card = player2Deck.play();
         currentTurn.add(player1Card, player2Card);
         int comparision = player1Card.compareTo(player2Card);
-        if(comparision > 0) {
-            player1CardsWon.add(player1Card, player2Card);
-            player1CardsWon.add(cardsFromTieResolving);
-            System.out.print(currentTurn);
-            System.out.println(getScore());
-            currentTurn = null;
-        } else if(comparision < 0) {
-            player2CardsWon.add(player1Card, player2Card);
-            player2CardsWon.add(cardsFromTieResolving);
-            System.out.print(currentTurn);
-            System.out.println(getScore());
-            currentTurn = null;
-        } else {
+        if(comparision == 0) {
             cardsFromTieResolving.add(player1Card, player2Card);
             resolveTie(cardsFromTieResolving);
+        } else {
+            if(comparision > 0) {
+                player1CardsWon.add(player1Card, player2Card);
+                player1CardsWon.add(cardsFromTieResolving);
+            } else {
+                player2CardsWon.add(player1Card, player2Card);
+                player2CardsWon.add(cardsFromTieResolving);
+            }
+            System.out.print(currentTurn);
+            System.out.println(getScore());
+            currentTurn = null;
         }
     }
 
