@@ -97,6 +97,7 @@ public class Gameplay {
             System.out.print("Wybór = _" + "\b");
             String choice = sc.nextLine();
             if(choice.equals("1")) {
+                System.out.println();
                 validInput = true;
                 gameplay = new Gameplay();
                 gameplay.playTheGame();
