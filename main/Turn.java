@@ -19,6 +19,7 @@ public class Turn {
             char comparisionSign = comparision > 0 ? '>' : (comparision == 0 ? '=' : '<');
             for(int i = 0; i < tieLevel; i++) toReturn.append("-> ");
             if(tieLevel > 0) toReturn.append("Gracze dokładają zakrytą kartę" + "\n");
+            for(int i = 0; i < tieLevel; i++) toReturn.append("-> ");
             toReturn.append(c1).append(" ").append(comparisionSign).append(" ").append(c2);
             if(player1Cards.size() > 0) toReturn.append("\n");
             tieLevel++;
