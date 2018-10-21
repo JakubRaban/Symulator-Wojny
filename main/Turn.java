@@ -4,7 +4,7 @@ public class Turn {
 
     private LinkedList<Card> player1Cards = new LinkedList<>();
     private LinkedList<Card> player2Cards = new LinkedList<>();
-    private LinkedList<Card> coveredCards = new LinkedList<>();
+    private CardCollection coveredCards = new CardCollection();
 
     void add(Card c1, Card c2) {
         player1Cards.add(c1);
@@ -12,8 +12,7 @@ public class Turn {
     }
 
     void addCoveredCards(Card c1, Card c2) {
-        coveredCards.add(c1);
-        coveredCards.add(c2);
+        coveredCards.add(c1, c2);
     }
 
     public String toString() {
@@ -29,10 +28,10 @@ public class Turn {
             for(int i = 0; i < tieLevel; i++) toReturn.append("-> ");
             toReturn.append(c1).append(" ").append(comparisionSign).append(" ").append(c2);
             if(tieLevel > 0 && player1Cards.size() == 0) {
-                for(int i = 0; i < tieLevel; i++) toReturn.append("-> ");
                 toReturn.append("\n");
+                for(int i = 0; i < tieLevel; i++) toReturn.append("-> ");
                 toReturn.append("Zakryte karty: ").append(coveredCards.toString());
-            } // TODO poprawić formatowanie i zaimplementować pokazywanie ukrytych kart po kolejce
+            }
             if(player1Cards.size() > 0) toReturn.append("\n");
             tieLevel++;
         }

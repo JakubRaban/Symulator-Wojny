@@ -39,5 +39,11 @@ public class CardCollectionTest {
         assertEquals(d.size(), 52);
     }
 
+    @Test
+    public void testToString() {
+        CardCollection c = new CardCollection();
+        c.add(new Card(CardValue.ACE, CardSuit.SPADES));
+        assertEquals("[A Pik]", c.toString());
+    }
 
 }

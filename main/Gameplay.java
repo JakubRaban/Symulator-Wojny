@@ -8,6 +8,7 @@ public class Gameplay {
     CardCollection player1CardsWon = new CardCollection(false);
     CardCollection player2CardsWon = new CardCollection(false);
     private Turn currentTurn;
+    private int turnCounter = 0, warCounter = 0;
 
     Gameplay() {
         CardCollection startingDeck = new CardCollection(true);
@@ -26,6 +27,8 @@ public class Gameplay {
 
     void takeTurn(CardCollection cardsFromTieResolving) {
         if(currentTurn == null) currentTurn = new Turn();
+        if(cardsFromTieResolving.size() == 0) turnCounter++;
+        if(cardsFromTieResolving.size() > 0) warCounter++;
         Card player1Card = player1Deck.play();
         Card player2Card = player2Deck.play();
         currentTurn.add(player1Card, player2Card);
@@ -42,7 +45,7 @@ public class Gameplay {
                 player2CardsWon.add(cardsFromTieResolving);
             }
             System.out.print(currentTurn);
-            System.out.println(getScore());
+            System.out.println(" " + getScore());
             currentTurn = null;
         }
     }
@@ -53,6 +56,7 @@ public class Gameplay {
             Card c1 = player1Deck.play();
             Card c2 = player2Deck.play();
             cards.add(c1, c2);
+            currentTurn.addCoveredCards(c1, c2);
             takeTurn(cards);
         }
     }
@@ -76,12 +80,18 @@ public class Gameplay {
     }
 
     private void win() {
+
+    }
+
+    private void printGameStats() {
+        StringBuilder result = new StringBuilder("\n");
         if (player2Deck.size() + player2CardsWon.size() < 2) {
-            System.out.println("Wygrywa gracz 1");
+            result.append("Wygrywa gracz 1");
         }
         else {
-            System.out.println("Wygrywa gracz 2");
+            result.append("Wygrywa gracz 2");
         }
+        result.append("\n").append("Ilość tur: ").append(turnCounter).append("\n").append("Ilość wojen: ").append(warCounter);
     }
 
 
