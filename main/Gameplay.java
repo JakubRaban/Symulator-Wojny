@@ -10,7 +10,7 @@ public class Gameplay {
     CardCollection player2CardsWon = new CardCollection(false);
     private Turn currentTurn;
     private int turnCounter = 0, warCounter = 0;
-    GameStatusPrinter printer = new GameStatusPrinter();
+    private GameStatusPrinter printer = new GameStatusPrinter();
 
     Gameplay() throws IOException {
         CardCollection startingDeck = new CardCollection(true);
