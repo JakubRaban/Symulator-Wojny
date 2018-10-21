@@ -1,5 +1,4 @@
 
-import java.io.*;
 import java.util.Scanner;
 
 public class Gameplay {
@@ -10,10 +9,8 @@ public class Gameplay {
     CardCollection player2CardsWon = new CardCollection(false);
     private Turn currentTurn;
     private int turnCounter = 0, warCounter = 0;
-    private FileWriter writer = new FileWriter(new File("gra.txt"));
-    // TODO dodać zapis gry do pliku
 
-    Gameplay() throws IOException {
+    Gameplay() {
         CardCollection startingDeck = new CardCollection(true);
         int size = startingDeck.size();
         for(int i = 0; i < size; i++) {
