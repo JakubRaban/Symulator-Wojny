@@ -1,8 +1,9 @@
+import java.util.LinkedList;
 
 public class Turn {
 
-    private CardCollection player1Cards = new CardCollection();
-    private CardCollection player2Cards = new CardCollection();
+    private LinkedList<Card> player1Cards = new LinkedList<>();
+    private LinkedList<Card> player2Cards = new LinkedList<>();
 
     void add(Card c1, Card c2) {
         player1Cards.add(c1);
@@ -13,8 +14,8 @@ public class Turn {
         int tieLevel = 0;
         StringBuilder toReturn = new StringBuilder();
         while(player1Cards.size() > 0) {
-            Card c1 = player1Cards.play();
-            Card c2 = player2Cards.play();
+            Card c1 = player1Cards.poll();
+            Card c2 = player2Cards.poll();
             int comparision = c1.compareTo(c2);
             char comparisionSign = comparision > 0 ? '>' : (comparision == 0 ? '=' : '<');
             for(int i = 0; i < tieLevel; i++) toReturn.append("-> ");
