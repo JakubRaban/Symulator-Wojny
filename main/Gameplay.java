@@ -1,4 +1,5 @@
 
+import java.io.IOException;
 import java.util.Scanner;
 
 public class Gameplay {
@@ -9,8 +10,9 @@ public class Gameplay {
     CardCollection player2CardsWon = new CardCollection(false);
     private Turn currentTurn;
     private int turnCounter = 0, warCounter = 0;
+    GameStatusPrinter printer = new GameStatusPrinter();
 
-    Gameplay() {
+    Gameplay() throws IOException {
         CardCollection startingDeck = new CardCollection(true);
         int size = startingDeck.size();
         for(int i = 0; i < size; i++) {
@@ -19,13 +21,13 @@ public class Gameplay {
         }
     }
 
-    private void playTheGame() {
+    private void playTheGame() throws IOException {
         while(checkDeckSizes(1))
             takeTurn(new CardCollection(false));
         win();
     }
 
-    void takeTurn(CardCollection cardsFromTieResolving) {
+    void takeTurn(CardCollection cardsFromTieResolving) throws IOException {
         if(currentTurn == null) currentTurn = new Turn();
         if(cardsFromTieResolving.size() == 0) turnCounter++;
         if(cardsFromTieResolving.size() > 0) warCounter++;
@@ -44,16 +46,16 @@ public class Gameplay {
                 player2CardsWon.add(player1Card, player2Card);
                 player2CardsWon.add(cardsFromTieResolving);
             }
-            System.out.print(currentTurn);
-            System.out.println(" " + getScore());
+            printer.printToFileAndConsole(currentTurn.toString());
+            printer.printToFileAndConsole(" " + getScore() + "\n");
             currentTurn = null;
         }
     }
 
-    void resolveTie(CardCollection cards) {
+    void resolveTie(CardCollection cards) throws IOException {
         if(!checkDeckSizes(2)) {
             win();
-            System.out.println(currentTurn);
+            printer.printToFileAndConsole(currentTurn + "\n");
         }
         else {
             Card c1 = player1Deck.play();
@@ -82,7 +84,7 @@ public class Gameplay {
 
     }
 
-    private void win() {
+    private void win() throws IOException {
         printGameStats();
         main();
     }
@@ -96,11 +98,11 @@ public class Gameplay {
             result.append("Wygrywa gracz 2");
         }
         result.append("\n").append("Ilość tur: ").append(turnCounter).append("\n").append("Ilość wojen: ").append(warCounter);
-        System.out.println(result);
+        printer.printToFileAndConsole(result + "\n");
     }
 
 
-    public static void main(String ... args) {
+    public static void main(String ... args) throws IOException {
         Scanner sc = new Scanner(System.in);
         Gameplay gameplay;
         System.out.println("\n" + "--- SYMULATOR WOJNY ---");

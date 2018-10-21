@@ -1,17 +1,19 @@
+
 import org.junit.Test;
+import java.io.IOException;
 import static org.junit.Assert.*;
 
 public class GameplayTest {
 
     @Test
-    public void constructorTest() {
+    public void constructorTest() throws IOException {
         Gameplay g = new Gameplay();
         assertEquals(g.player1Deck.size(), g.player2Deck.size());
         assertEquals(g.player1Deck.size(), 26);
     }
 
     @Test
-    public void testTakeTurn() {
+    public void testTakeTurn() throws IOException {
         Gameplay g = new Gameplay();
         g.player1Deck.clear();
         g.player2Deck.clear();
@@ -26,7 +28,7 @@ public class GameplayTest {
     }
 
     @Test
-    public void testCheckDeckSizes() {
+    public void testCheckDeckSizes() throws IOException {
         Gameplay g = new Gameplay();
         g.player1Deck.clear();
         g.player2Deck.clear();
@@ -46,7 +48,7 @@ public class GameplayTest {
     }
 
     @Test
-    public void testTieBreaker() {
+    public void testTieBreaker() throws IOException {
         Gameplay g = new Gameplay();
         g.player1Deck.clear();
         g.player2Deck.clear();
