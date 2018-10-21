@@ -107,7 +107,7 @@ public class Gameplay {
     public static void main(String ... args) throws IOException {
         Scanner sc = new Scanner(System.in);
         Gameplay gameplay;
-        System.out.println(n + "--- SYMULATOR WOJNY ---");
+        System.out.println("\n" + "--- SYMULATOR WOJNY ---");
         System.out.println("1 = Zagraj w wojnę");
         System.out.println("2 = Wyjdź");
         boolean validInput = false;
