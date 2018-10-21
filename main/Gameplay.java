@@ -53,7 +53,6 @@ public class Gameplay {
             Card c1 = player1Deck.play();
             Card c2 = player2Deck.play();
             cards.add(c1, c2);
-            currentTurn.add(c1, c2);
             takeTurn(cards);
         }
     }
