@@ -80,7 +80,7 @@ public class Gameplay {
     }
 
     private void win() {
-
+        printGameStats();
     }
 
     private void printGameStats() {
@@ -92,6 +92,7 @@ public class Gameplay {
             result.append("Wygrywa gracz 2");
         }
         result.append("\n").append("Ilość tur: ").append(turnCounter).append("\n").append("Ilość wojen: ").append(warCounter);
+        System.out.println(result);
     }
 
 
@@ -112,6 +113,7 @@ public class Gameplay {
                 gameplay.playTheGame();
             } else if(choice.equals("2")) System.exit(0);
         }
+        main();
     }
 
 }
