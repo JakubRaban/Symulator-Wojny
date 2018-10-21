@@ -1,4 +1,5 @@
 
+import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Calendar;
@@ -16,7 +17,9 @@ public class GameStatusPrinter {
         int minute = c.get(Calendar.MINUTE);
         int second = c.get(Calendar.SECOND);
         String filename = year + "-" + month + "-" + day + "_" + hour + "-" + minute + "-" + second + ".txt";
-        printer = new PrintWriter(filename, "UTF-8");
+        File file = new File(new File(System.getProperty("user.dir") + "/" + "games/"), filename);
+        file.getParentFile().mkdirs();
+        printer = new PrintWriter(file, "UTF-8");
     }
 
     void printToFileAndConsole(String text) {
