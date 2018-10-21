@@ -16,7 +16,7 @@ public class GameStatusPrinter {
         int hour = c.get(Calendar.HOUR);
         int minute = c.get(Calendar.MINUTE);
         int second = c.get(Calendar.SECOND);
-        filename = year + "-" + month + "-" + day + "_" + hour + "-" + minute + "-" + second;
+        filename = year + "-" + month + "-" + day + "_" + hour + "-" + minute + "-" + second + ".txt";
         printer = new PrintWriter(filename, "UTF-8"); // TODO godzina w formacie 24h
     }
 
