@@ -21,7 +21,7 @@ public class GameStatusPrinter {
 
     void printToFileAndConsole(String text) {
         System.out.print(text);
-        printer.print(text); // TODO printer nie drukuje całego tekstu do pliku
+        printer.print(text);
     }
 
     void close() {
