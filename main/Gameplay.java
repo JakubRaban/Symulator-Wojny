@@ -51,7 +51,10 @@ public class Gameplay {
     }
 
     void resolveTie(CardCollection cards) {
-        if(!checkDeckSizes(2)) win();
+        if(!checkDeckSizes(2)) {
+            win();
+            System.out.println(currentTurn);
+        }
         else {
             Card c1 = player1Deck.play();
             Card c2 = player2Deck.play();
@@ -81,6 +84,7 @@ public class Gameplay {
 
     private void win() {
         printGameStats();
+        main();
     }
 
     private void printGameStats() {
@@ -113,7 +117,6 @@ public class Gameplay {
                 gameplay.playTheGame();
             } else if(choice.equals("2")) System.exit(0);
         }
-        main();
     }
 
 }
