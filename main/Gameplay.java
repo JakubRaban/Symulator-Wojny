@@ -86,6 +86,7 @@ public class Gameplay {
 
     private void win() throws IOException {
         printGameStats();
+        printer.close();
         main();
     }
 

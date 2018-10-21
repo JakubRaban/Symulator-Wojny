@@ -24,4 +24,8 @@ public class GameStatusPrinter {
         printer.print(text); // TODO printer nie drukuje całego tekstu do pliku
     }
 
+    void close() {
+        printer.close();
+    }
+
 }
