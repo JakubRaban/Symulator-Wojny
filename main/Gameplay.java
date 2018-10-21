@@ -11,6 +11,7 @@ public class Gameplay {
     private Turn currentTurn;
     private int turnCounter = 0, warCounter = 0;
     private GameStatusPrinter printer = new GameStatusPrinter();
+    private String n = System.getProperty("line.separator");
 
     Gameplay() throws IOException {
         CardCollection startingDeck = new CardCollection(true);
@@ -47,7 +48,7 @@ public class Gameplay {
                 player2CardsWon.add(cardsFromTieResolving);
             }
             printer.printToFileAndConsole(currentTurn.toString());
-            printer.printToFileAndConsole(" " + getScore() + "\n");
+            printer.printToFileAndConsole(" " + getScore() + n);
             currentTurn = null;
         }
     }
@@ -55,7 +56,7 @@ public class Gameplay {
     void resolveTie(CardCollection cards) throws IOException {
         if(!checkDeckSizes(2)) {
             win();
-            printer.printToFileAndConsole(currentTurn + "\n");
+            printer.printToFileAndConsole(currentTurn + n);
         }
         else {
             Card c1 = player1Deck.play();
@@ -91,22 +92,22 @@ public class Gameplay {
     }
 
     private void printGameStats() {
-        StringBuilder result = new StringBuilder("\n");
+        StringBuilder result = new StringBuilder(n);
         if (player2Deck.size() + player2CardsWon.size() < player1CardsWon.size() + player1Deck.size()) {
             result.append("Wygrywa gracz 1");
         }
         else {
             result.append("Wygrywa gracz 2");
         }
-        result.append("\n").append("Ilość tur: ").append(turnCounter).append("\n").append("Ilość wojen: ").append(warCounter);
-        printer.printToFileAndConsole(result + "\n");
+        result.append(n).append("Ilość tur: ").append(turnCounter).append(n).append("Ilość wojen: ").append(warCounter);
+        printer.printToFileAndConsole(result + n);
     }
 
 
     public static void main(String ... args) throws IOException {
         Scanner sc = new Scanner(System.in);
         Gameplay gameplay;
-        System.out.println("\n" + "--- SYMULATOR WOJNY ---");
+        System.out.println(n + "--- SYMULATOR WOJNY ---");
         System.out.println("1 = Zagraj w wojnę");
         System.out.println("2 = Wyjdź");
         boolean validInput = false;
