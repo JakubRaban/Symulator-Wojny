@@ -89,7 +89,7 @@ public class Gameplay {
 
     private void printGameStats() {
         StringBuilder result = new StringBuilder("\n");
-        if (player2Deck.size() + player2CardsWon.size() < 2) {
+        if (player2Deck.size() + player2CardsWon.size() < player1CardsWon.size() + player1Deck.size()) {
             result.append("Wygrywa gracz 1");
         }
         else {
