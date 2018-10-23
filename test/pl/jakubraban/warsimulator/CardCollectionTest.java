@@ -1,4 +1,11 @@
+package pl.jakubraban.warsimulator;
+
 import org.junit.Test;
+import pl.jakubraban.warsimulator.Card;
+import pl.jakubraban.warsimulator.CardCollection;
+import pl.jakubraban.warsimulator.CardSuit;
+import pl.jakubraban.warsimulator.CardValue;
+
 import static org.junit.Assert.*;
 
 public class CardCollectionTest {

@@ -1,3 +1,4 @@
+package pl.jakubraban.warsimulator;
 
 import java.io.IOException;
 import java.util.Scanner;

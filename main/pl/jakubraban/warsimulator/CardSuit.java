@@ -1,3 +1,5 @@
+package pl.jakubraban.warsimulator;
+
 public enum CardSuit {
 
     HEART, DIAMOND, CLUBS, SPADES;

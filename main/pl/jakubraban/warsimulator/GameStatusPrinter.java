@@ -1,3 +1,4 @@
+package pl.jakubraban.warsimulator;
 
 import java.io.File;
 import java.io.IOException;

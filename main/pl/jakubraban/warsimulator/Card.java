@@ -1,4 +1,4 @@
-import java.util.Random;
+package pl.jakubraban.warsimulator;
 
 public class Card implements Comparable<Card> {
 

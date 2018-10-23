@@ -1,5 +1,8 @@
+package pl.jakubraban.warsimulator;
 
 import org.junit.Test;
+import pl.jakubraban.warsimulator.*;
+
 import java.io.IOException;
 import static org.junit.Assert.*;
 

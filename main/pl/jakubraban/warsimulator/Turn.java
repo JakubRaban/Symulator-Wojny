@@ -1,3 +1,5 @@
+package pl.jakubraban.warsimulator;
+
 import java.util.LinkedList;
 
 public class Turn {
