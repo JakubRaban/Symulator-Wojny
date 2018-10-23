@@ -18,7 +18,7 @@ public class GameStatusPrinter {
         int minute = c.get(Calendar.MINUTE);
         int second = c.get(Calendar.SECOND);
         String filename = year + "-" + month + "-" + day + "_" + hour + "-" + minute + "-" + second + ".txt";
-        File file = new File(new File(System.getProperty("user.dir") + "/" + "games/"), filename);
+        File file = new File(System.getProperty("user.dir") + "/" + "War Simulator/games/" + filename);
         file.getParentFile().mkdirs();
         printer = new PrintWriter(file, "UTF-8");
     }
