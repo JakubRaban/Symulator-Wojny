@@ -1,7 +1,6 @@
 package pl.jakubraban.warsimulator;
 
 import java.io.IOException;
-import java.util.Scanner;
 
 public class Gameplay {
 
@@ -14,7 +13,7 @@ public class Gameplay {
     private GameStatusPrinter printer = new GameStatusPrinter();
     private String n = System.getProperty("line.separator");
 
-    Gameplay() throws IOException {
+    public Gameplay() throws IOException {
         CardCollection startingDeck = new CardCollection(true);
         int size = startingDeck.size();
         for(int i = 0; i < size; i++) {
@@ -23,7 +22,7 @@ public class Gameplay {
         }
     }
 
-    private void playTheGame() throws IOException {
+    public void playTheGame() throws IOException {
         while(checkDeckSizes(1))
             takeTurn(new CardCollection(false));
         win();
@@ -89,7 +88,7 @@ public class Gameplay {
     private void win() throws IOException {
         printGameStats();
         printer.close();
-        main();
+        Main.gameMenu();
     }
 
     private void printGameStats() {
@@ -102,26 +101,6 @@ public class Gameplay {
         }
         result.append(n).append("Ilość tur: ").append(turnCounter).append(n).append("Ilość wojen: ").append(warCounter);
         printer.printToFileAndConsole(result + n);
-    }
-
-
-    public static void main(String ... args) throws IOException {
-        Scanner sc = new Scanner(System.in);
-        Gameplay gameplay;
-        System.out.println("\n" + "--- SYMULATOR WOJNY ---");
-        System.out.println("1 = Zagraj w wojnę");
-        System.out.println("2 = Wyjdź");
-        boolean validInput = false;
-        while(!validInput) {
-            System.out.print("Wybór = _" + "\b");
-            String choice = sc.nextLine();
-            if(choice.equals("1")) {
-                System.out.println();
-                validInput = true;
-                gameplay = new Gameplay();
-                gameplay.playTheGame();
-            } else if(choice.equals("2")) System.exit(0);
-        }
     }
 
 }
