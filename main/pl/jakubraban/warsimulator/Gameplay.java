@@ -1,6 +1,7 @@
 package pl.jakubraban.warsimulator;
 
 import java.io.IOException;
+import java.util.Scanner;
 
 public class Gameplay {
 
@@ -12,6 +13,8 @@ public class Gameplay {
     private int turnCounter = 0, warCounter = 0;
     private GameStatusPrinter printer = new GameStatusPrinter();
     private String n = System.getProperty("line.separator");
+    String name1, name2;
+    Scanner sc = new Scanner(System.in);
 
     public Gameplay() throws IOException {
         CardCollection startingDeck = new CardCollection(true);
@@ -23,6 +26,13 @@ public class Gameplay {
     }
 
     public void playTheGame() throws IOException {
+        if(Settings.getSettings("getPlayersNames")) {
+            System.out.print("Imię gracza 1: ");
+            name1 = sc.nextLine();
+            System.out.print("Imie gracza 2: ");
+            name2 = sc.nextLine();
+            System.out.println();
+        }
         while(checkDeckSizes(1))
             takeTurn(new CardCollection(false));
         win();
@@ -86,21 +96,30 @@ public class Gameplay {
     }
 
     private void win() throws IOException {
-        printGameStats();
+        StringBuilder result = new StringBuilder(n);
+        boolean useNames = Settings.getSettings("getPlayersNames");
+        if (player2Deck.size() + player2CardsWon.size() < player1CardsWon.size() + player1Deck.size()) {
+            if(useNames) result.append("Wygrywa " + name1);
+            else result.append("Wygrywa gracz 1");
+        }
+        else {
+            if(useNames) result.append("Wygrywa " + name2);
+            else result.append("Wygrywa gracz 2");
+        }
+        printer.printToFileAndConsole(result.toString());
+        if(Settings.getSettings("printStatsOnGameEnd")) printGameStats();
         printer.close();
         Main.gameMenu();
     }
 
     private void printGameStats() {
         StringBuilder result = new StringBuilder(n);
-        if (player2Deck.size() + player2CardsWon.size() < player1CardsWon.size() + player1Deck.size()) {
-            result.append("Wygrywa gracz 1");
-        }
-        else {
-            result.append("Wygrywa gracz 2");
-        }
         result.append(n).append("Ilość tur: ").append(turnCounter).append(n).append("Ilość wojen: ").append(warCounter);
         printer.printToFileAndConsole(result + n);
+    }
+
+    int getTurnCount() {
+        return turnCounter;
     }
 
 }

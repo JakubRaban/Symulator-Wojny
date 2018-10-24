@@ -22,6 +22,8 @@ public class Turn {
         int tieLevel = 0;
         StringBuilder toReturn = new StringBuilder();
         while(player1Cards.size() > 0) {
+            if(Settings.getSettings("enumerateTurns") && tieLevel == 0)
+                toReturn.append(Main.gameplay.getTurnCount()).append(". ");
             Card c1 = player1Cards.poll();
             Card c2 = player2Cards.poll();
             int comparision = c1.compareTo(c2);

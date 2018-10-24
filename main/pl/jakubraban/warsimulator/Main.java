@@ -5,9 +5,10 @@ import java.util.Scanner;
 
 public class Main {
 
+    public static Gameplay gameplay;
+
     public static void gameMenu() throws IOException {
         Scanner sc = new Scanner(System.in);
-        Gameplay gameplay;
         System.out.println("\n" + "--- SYMULATOR WOJNY ---");
         System.out.println("1 = Zagraj w wojnę");
         System.out.println("2 = Wyjdź");
