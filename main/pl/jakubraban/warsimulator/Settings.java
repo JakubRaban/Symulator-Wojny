@@ -53,7 +53,7 @@ public class Settings {
                 validInput = true;
                 Main.gameMenu();
             }
-            changeSettingsMenu();
+            if(validInput) changeSettingsMenu();
         }
     }
 
