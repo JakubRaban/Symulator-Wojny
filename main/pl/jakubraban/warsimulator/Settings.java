@@ -64,8 +64,8 @@ public class Settings {
     private static String settingStatus(String property) {
         if(programProperties
                 .getProperty(property)
-                .equals("true")) return "WŁĄCZONE";
-        else return "WYŁĄCZONE";
+                .equals("true")) return "TAK";
+        else return "NIE";
     }
 
     private static String getChangePropertyMessage(String currentState) {
