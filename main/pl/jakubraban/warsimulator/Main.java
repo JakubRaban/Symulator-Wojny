@@ -1,18 +1,26 @@
 package pl.jakubraban.warsimulator;
 
-import java.io.File;
-import java.io.IOException;
-import java.io.PrintWriter;
+import java.io.*;
+import java.util.Properties;
 import java.util.Scanner;
 
 public class Main {
 
-    public static void setUpSettingsFile() throws IOException {
-        File settingsFile = new File(System.getProperty("user.dir") + "/" + "War Simulator/.settings");
-        settingsFile.getParentFile().mkdirs();
-        PrintWriter writer = new PrintWriter(settingsFile, "UTF-8");
-        writer.write("XD");
-        writer.close(); // TODO no generalnie to całość tej metody
+    public static Properties programProperties = new Properties();
+
+    private static void setUpSettingsFile() throws IOException {
+        File settingsFile = new File(System.getProperty("user.dir") + "/" + "War Simulator/settings.xml");
+        if (settingsFile.exists()) {
+            programProperties.loadFromXML(new FileInputStream(settingsFile));
+        } else {
+            settingsFile.getParentFile().mkdirs();
+            programProperties.setProperty("getPlayersNames", "false");
+            programProperties.setProperty("enumerateTurns", "false");
+            programProperties.setProperty("printStatsOnGameEnd", "true");
+            programProperties.setProperty("printGameToFile", "true");
+            programProperties.storeToXML(new FileOutputStream
+                    (System.getProperty("user.dir") + "/" + "War Simulator/settings.xml"), "");
+        }
     }
 
     public static void gameMenu() throws IOException {
