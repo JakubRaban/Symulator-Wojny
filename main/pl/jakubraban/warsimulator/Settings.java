@@ -9,16 +9,20 @@ import java.util.Scanner;
 
 public class Settings {
 
-    static File settingsFile = new File(System.getProperty("user.dir") + "/" + "War Simulator/settings.xml");
-    public static Properties programProperties = new Properties();
-    static String[] propertyNames = {"getPlayersNames", "enumerateTurns", "printGameToFile", "printStatsOnGameEnd"};
-    static boolean[] propertyDefaults = {false, false, true, true};
-    static String[] propertyDescriptions = {
+    private static File settingsFile = new File(System.getProperty("user.dir") + "/" + "War Simulator/settings.xml");
+    private static Properties programProperties = new Properties();
+    private static String[] propertyNames = {"getPlayersNames", "enumerateTurns", "printGameToFile", "printStatsOnGameEnd"};
+    private static boolean[] propertyDefaults = {false, false, true, true};
+    private static String[] propertyDescriptions = {
             "Pobieraj imiona graczy na początku gry",
             "Numeruj tury",
             "Zapisuj gry do pliku",
             "Pokaż statystyki pod koniec gry"
     };
+
+    public static boolean getSettings(String name) {
+        return Boolean.parseBoolean(programProperties.getProperty(name));
+    }
 
     static void setUpSettingsFile() throws IOException {
         if (settingsFile.exists()) programProperties.loadFromXML(new FileInputStream(settingsFile));
