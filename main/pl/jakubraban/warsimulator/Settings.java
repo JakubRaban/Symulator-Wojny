@@ -53,7 +53,7 @@ public class Settings {
                 programProperties.setProperty(propertyNames[choice],
                         Boolean.toString(!Boolean.parseBoolean(programProperties.getProperty(propertyNames[choice]))));
                 programProperties.storeToXML(new FileOutputStream(settingsFile), "");
-            } else if(choice == 4 || choice == 24) {
+            } else if(choice == 4 || choice == 23) {
                 validInput = true;
                 Main.gameMenu();
             }

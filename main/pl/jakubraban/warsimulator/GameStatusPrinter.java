@@ -30,7 +30,7 @@ public class GameStatusPrinter {
     }
 
     void close() {
-        printer.close();
+        if(Settings.getSettings("printGameToFile")) printer.close();
     }
 
 }
