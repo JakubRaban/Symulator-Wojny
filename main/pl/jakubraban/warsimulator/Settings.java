@@ -69,7 +69,7 @@ public class Settings {
     }
 
     private static String getChangePropertyMessage(String currentState) {
-        if(currentState.equals("WŁĄCZONE")) return "Wyłącz";
+        if(currentState.equals("TAK")) return "Wyłącz";
         else return "Włącz";
     }
 
