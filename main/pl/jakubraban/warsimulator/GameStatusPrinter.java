@@ -10,7 +10,7 @@ public class GameStatusPrinter {
     private PrintWriter printer;
 
     GameStatusPrinter() throws IOException {
-        if(!Settings.getSettings("printGameToFile")) return;
+        if(!Main.gameSettings.getSetting("printGameToFile")) return;
         Calendar c = Calendar.getInstance();
         int year = c.get(Calendar.YEAR);
         int month = c.get(Calendar.MONTH);
@@ -26,11 +26,11 @@ public class GameStatusPrinter {
 
     void printToFileAndConsole(String text) {
         System.out.print(text);
-        if(Settings.getSettings("printGameToFile")) printer.print(text);
+        if(Main.gameSettings.getSetting("printGameToFile")) printer.print(text);
     }
 
     void close() {
-        if(Settings.getSettings("printGameToFile")) printer.close();
+        if(Main.gameSettings.getSetting("printGameToFile")) printer.close();
     }
 
 }

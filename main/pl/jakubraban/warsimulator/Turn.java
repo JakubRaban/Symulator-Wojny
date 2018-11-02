@@ -22,7 +22,7 @@ public class Turn {
     public String toString() {
         int tieLevel = 0;
         while(player1Cards.size() > 0) {
-            if(Settings.getSettings("enumerateTurns") && tieLevel == 0)
+            if(Main.gameSettings.getSetting("enumerateTurns") && tieLevel == 0)
                 printTurnNumber();
             Card c1 = player1Cards.poll();
             Card c2 = player2Cards.poll();

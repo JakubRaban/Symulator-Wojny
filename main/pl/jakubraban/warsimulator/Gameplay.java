@@ -26,7 +26,7 @@ public class Gameplay {
     }
 
     public void playTheGame() throws IOException {
-        if(Settings.getSettings("getPlayersNames")) {
+        if(Main.gameSettings.getSetting(Settings.GET_PLAYERS_NAMES)) {
             System.out.print("Imię gracza 1: ");
             name1 = sc.nextLine();
             System.out.print("Imie gracza 2: ");
@@ -97,7 +97,7 @@ public class Gameplay {
 
     private void win() throws IOException {
         StringBuilder result = new StringBuilder(n);
-        boolean useNames = Settings.getSettings("getPlayersNames");
+        boolean useNames = Main.gameSettings.getSetting(Settings.GET_PLAYERS_NAMES);
         if (player2Deck.size() + player2CardsWon.size() < player1CardsWon.size() + player1Deck.size()) {
             if(useNames) result.append("Wygrywa " + name1);
             else result.append("Wygrywa gracz 1");
@@ -107,7 +107,7 @@ public class Gameplay {
             else result.append("Wygrywa gracz 2");
         }
         printer.printToFileAndConsole(result.toString());
-        if(Settings.getSettings("printStatsOnGameEnd")) printGameStats();
+        if(Main.gameSettings.getSetting(Settings.PRINT_STATS_ON_GAME_END)) printGameStats();
         printer.close();
         UI.gameMenu();
     }
