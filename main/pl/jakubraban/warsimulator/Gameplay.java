@@ -13,8 +13,8 @@ public class Gameplay {
     private int turnCounter = 0, warCounter = 0;
     private GameStatusPrinter printer = new GameStatusPrinter();
     private String n = System.getProperty("line.separator");
-    String name1, name2;
-    Scanner sc = new Scanner(System.in);
+    private String name1, name2;
+    private Scanner sc = new Scanner(System.in);
 
     public Gameplay() throws IOException {
         CardCollection startingDeck = new CardCollection(true);

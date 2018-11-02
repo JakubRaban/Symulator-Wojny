@@ -8,6 +8,7 @@ public class Turn {
     private LinkedList<Card> player2Cards = new LinkedList<>();
     private CardCollection coveredCards = new CardCollection();
     private String n = System.getProperty("line.separator");
+    private StringBuilder toReturn = new StringBuilder();
 
     void add(Card c1, Card c2) {
         player1Cards.add(c1);
@@ -20,27 +21,40 @@ public class Turn {
 
     public String toString() {
         int tieLevel = 0;
-        StringBuilder toReturn = new StringBuilder();
         while(player1Cards.size() > 0) {
             if(Settings.getSettings("enumerateTurns") && tieLevel == 0)
-                toReturn.append(Main.gameplay.getTurnCount()).append(". ");
+                printTurnNumber();
             Card c1 = player1Cards.poll();
             Card c2 = player2Cards.poll();
-            int comparision = c1.compareTo(c2);
-            char comparisionSign = comparision > 0 ? '>' : (comparision == 0 ? '=' : '<');
-            for(int i = 0; i < tieLevel; i++) toReturn.append("-> ");
+            char comparisionSign = getComparisionChar(c1, c2);
+            printTieArrows(tieLevel);
             if(tieLevel > 0) toReturn.append("Gracze dokładają zakrytą kartę").append(n);
-            for(int i = 0; i < tieLevel; i++) toReturn.append("-> ");
+            printTieArrows(tieLevel);
             toReturn.append(c1).append(" ").append(comparisionSign).append(" ").append(c2);
             if(tieLevel > 0 && player1Cards.size() == 0) {
                 toReturn.append(n);
-                for(int i = 0; i < tieLevel; i++) toReturn.append("-> ");
+                printTieArrows(tieLevel);
                 toReturn.append("Zakryte karty: ").append(coveredCards.toString());
             }
             if(player1Cards.size() > 0) toReturn.append(n);
             tieLevel++;
         }
         return toReturn.toString();
+    }
+
+    private void printTieArrows(int tieLevel) {
+        for(int i = 0; i < tieLevel; i++) toReturn.append("-> ");
+    }
+
+    private char getComparisionChar(Card c1, Card c2) {
+        int comparision = c1.compareTo(c2);
+        if(comparision > 0) return '>';
+        else if (comparision == 0) return '=';
+        else return '<';
+    }
+
+    private void printTurnNumber() {
+        toReturn.append(Main.gameplay.getTurnCount()).append(". ");
     }
 
 }
