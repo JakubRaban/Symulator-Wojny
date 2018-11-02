@@ -9,10 +9,10 @@ import java.util.Scanner;
 
 public class Settings {
 
-    private static final String GET_PLAYERS_NAMES = "getPlayersNames";
-    private static final String ENUMERATE_TURNS = "enumerateTurns";
-    private static final String PRINT_GAME_TO_FILE = "printGameToFile";
-    private static final String PRINT_STATS_ON_GAME_END = "printStatsOnGameEnd";
+    public static final String GET_PLAYERS_NAMES = "getPlayersNames";
+    public static final String ENUMERATE_TURNS = "enumerateTurns";
+    public static final String PRINT_GAME_TO_FILE = "printGameToFile";
+    public static final String PRINT_STATS_ON_GAME_END = "printStatsOnGameEnd";
 
     private static final File settingsFile = new File(System.getProperty("user.dir") + "/" + "War Simulator/settings.xml");
     private static final Properties programProperties = new Properties();
@@ -25,11 +25,15 @@ public class Settings {
             "Pokaż statystyki pod koniec gry"
     };
 
-    public static boolean getSettings(String name) {
+    public Settings() throws IOException {
+        setUpSettingsFile();
+    }
+
+    public boolean getSetting(String name) {
         return Boolean.parseBoolean(programProperties.getProperty(name));
     }
 
-    static void setUpSettingsFile() throws IOException {
+    void setUpSettingsFile() throws IOException {
         if (settingsFile.exists()) programProperties.loadFromXML(new FileInputStream(settingsFile));
         else {
             settingsFile.getParentFile().mkdirs();
