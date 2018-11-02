@@ -9,11 +9,16 @@ import java.util.Scanner;
 
 public class Settings {
 
-    private static File settingsFile = new File(System.getProperty("user.dir") + "/" + "War Simulator/settings.xml");
-    private static Properties programProperties = new Properties();
-    private static String[] propertyNames = {"getPlayersNames", "enumerateTurns", "printGameToFile", "printStatsOnGameEnd"};
-    private static boolean[] propertyDefaults = {false, false, true, true};
-    private static String[] propertyDescriptions = {
+    private static final String GET_PLAYERS_NAMES = "getPlayersNames";
+    private static final String ENUMERATE_TURNS = "enumerateTurns";
+    private static final String PRINT_GAME_TO_FILE = "printGameToFile";
+    private static final String PRINT_STATS_ON_GAME_END = "printStatsOnGameEnd";
+
+    private static final File settingsFile = new File(System.getProperty("user.dir") + "/" + "War Simulator/settings.xml");
+    private static final Properties programProperties = new Properties();
+    private static final String[] propertyNames = {GET_PLAYERS_NAMES, ENUMERATE_TURNS, PRINT_GAME_TO_FILE, PRINT_STATS_ON_GAME_END};
+    private static final boolean[] propertyDefaults = {false, false, true, true};
+    private static final String[] propertyDescriptions = {
             "Pobieraj imiona graczy na początku gry",
             "Numeruj tury",
             "Zapisuj gry do pliku",
@@ -55,7 +60,7 @@ public class Settings {
                 programProperties.storeToXML(new FileOutputStream(settingsFile), "");
             } else if(choice == 4 || choice == 23) {
                 validInput = true;
-                Main.gameMenu();
+                UI.gameMenu();
             }
             if(validInput) changeSettingsMenu();
         }
