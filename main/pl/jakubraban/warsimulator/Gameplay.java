@@ -109,7 +109,7 @@ public class Gameplay {
         printer.printToFileAndConsole(result.toString());
         if(Settings.getSettings("printStatsOnGameEnd")) printGameStats();
         printer.close();
-        Main.gameMenu();
+        UI.gameMenu();
     }
 
     private void printGameStats() {
