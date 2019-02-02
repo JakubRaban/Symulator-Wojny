@@ -115,7 +115,20 @@ public class Gameplay {
     private void printGameStats() {
         StringBuilder result = new StringBuilder(n);
         result.append(n).append("Ilość tur: ").append(turnCounter).append(n).append("Ilość wojen: ").append(warCounter);
+        result.append(n).append("Gra zajęłaby ");
+        int time = countTime(turnCounter, warCounter);
+        int hours = time / 3600;
+        if(hours > 0) result.append(hours).append(" h ");
+        time = time - hours * 3600;
+        int minutes = time / 60;
+        if(minutes > 0 || hours > 0) result.append(minutes).append(" min ");
+        time = time - minutes * 60;
+        result.append(time).append(" s");
         printer.printToFileAndConsole(result + n);
+    }
+
+    private int countTime(int turnCounter, int warCounter) {
+        return (turnCounter + warCounter) * 5;
     }
 
     int getTurnCount() {
